@@ -7,7 +7,9 @@ namespace R5T.L0033.Construction
     {
         static void Main()
         {
-            Console.WriteLine("Hello World!");
+            //Experiments.Instance.Get_ProjectElement();
+            //Experiments.Instance.Create_EmptyProject();
+            Experiments.Instance.Create_InitialProject();
         }
     }
 }
