@@ -35,6 +35,12 @@ namespace R5T.L0033
                 context.ProjectElement,
                 Instances.ProjectSdkNames.NET);
 
+        /// <inheritdoc cref="ITargetFrameworkMonikers.Console"/>
+        public Action<IProjectElementContext> Set_TargetFramework_Console =>
+            context => Instances.ProjectXmlOperator.Set_TargetFramework(
+                context.ProjectElement,
+                Instances.TargetFrameworkMonikers.Console);
+
         /// <inheritdoc cref="ITargetFrameworkMonikers.Library"/>
         public Action<IProjectElementContext> Set_TargetFramework_Library =>
             context => Instances.ProjectXmlOperator.Set_TargetFramework(
@@ -71,6 +77,24 @@ namespace R5T.L0033
                     context.ProjectElement,
                     description);
 
+        /// <inheritdoc cref="L0032.Z000.IOutputTypes.Exe"/>
+        public Action<IProjectElementContext> Set_OutputType_Exe =>
+            context => Instances.ProjectXmlOperator.Set_OutputType(
+                context.ProjectElement,
+                Instances.OutputTypes.Exe);
+
+        /// <inheritdoc cref="L0032.Z000.IOutputTypes.Library"/>
+        public Action<IProjectElementContext> Set_OutputType_Library =>
+            context => Instances.ProjectXmlOperator.Set_OutputType(
+                context.ProjectElement,
+                Instances.OutputTypes.Library);
+
+        /// <inheritdoc cref="L0032.Z000.IOutputTypes.WinExe"/>
+        public Action<IProjectElementContext> Set_OutputType_WinExe =>
+            context => Instances.ProjectXmlOperator.Set_OutputType(
+                context.ProjectElement,
+                Instances.OutputTypes.WinExe);
+
         /// <inheritdoc cref="L0032.Z000.IPackageLicenseExpressions.MIT"/>
         public Action<IProjectElementContext> Set_PackageLicenseExpression_MIT =>
             context => Instances.ProjectXmlOperator.Set_PackageLicenseExpression(
@@ -85,11 +109,17 @@ namespace R5T.L0033
                 context.ProjectElement,
                 true);
 
-        public Func<IRepositoryUrl, Action<IProjectElementContext>> Set_RepositoryUrl =>
+        public Func<IRepositoryUrl, Action<IProjectElementContext>> Set_RepositoryUrl_Value =>
             repositoryUrl =>
                 context => Instances.ProjectXmlOperator.Set_RepositoryUrl(
                     context.ProjectElement,
                     repositoryUrl);
+
+        public Func<Func<IRepositoryUrl>, Action<IProjectElementContext>> Set_RepositoryUrl =>
+            repositoryUrlProvider =>
+                context => Instances.ProjectXmlOperator.Set_RepositoryUrl(
+                    context.ProjectElement,
+                    repositoryUrlProvider());
 
         /// <inheritdoc cref="L0032.Z000.ICOMReferences.Microsoft_Office_Interop_Excel"/>
         public Action<IProjectElementContext> Add_ExcelCOMReference =>

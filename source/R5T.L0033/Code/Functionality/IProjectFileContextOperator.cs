@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 using R5T.T0132;
 using R5T.T0172;
@@ -18,6 +19,16 @@ namespace R5T.L0033
             Instances.ContextOperator.In_Context(
                 Instances.ProjectFileContextConstructors.New(projectFilePath),
                 operations,
+                Instances.ProjectElementContextDestructors.Save_Synchronous(projectFilePath));
+        }
+
+        public Task In_New_ProjectFileContext(
+            IProjectFilePath projectFilePath,
+            IEnumerable<Func<IProjectFileContext, Task>> operations = default)
+        {
+            return Instances.ContextOperator.In_Context(
+                Instances.ProjectFileContextConstructors.New(projectFilePath),
+                operations,
                 Instances.ProjectElementContextDestructors.Save(projectFilePath));
         }
 
@@ -26,6 +37,26 @@ namespace R5T.L0033
             params Action<IProjectFileContext>[] operations)
         {
             this.In_New_ProjectFileContext(
+                projectFilePath,
+                operations.AsEnumerable());
+        }
+
+        public Task In_New_ProjectFileContext_Task(
+            IProjectFilePath projectFilePath,
+            params Action<IProjectFileContext>[] operations)
+        {
+            this.In_New_ProjectFileContext(
+                projectFilePath,
+                operations.AsEnumerable());
+
+            return Task.CompletedTask;
+        }
+
+        public Task In_New_ProjectFileContext(
+            IProjectFilePath projectFilePath,
+            params Func<IProjectFileContext, Task>[] operations)
+        {
+            return this.In_New_ProjectFileContext(
                 projectFilePath,
                 operations.AsEnumerable());
         }

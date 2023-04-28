@@ -44,7 +44,7 @@ namespace R5T.L0033.Construction
                         Instances.ProjectElementContextOperations.Set_Description(description),
                         Instances.ProjectElementContextOperations.Set_PackageLicenseExpression_MIT,
                         Instances.ProjectElementContextOperations.Set_PackageRequireLicenseAcceptance,
-                        Instances.ProjectElementContextOperations.Set_RepositoryUrl(repositoryUrl)),
+                        Instances.ProjectElementContextOperations.Set_RepositoryUrl_Value(repositoryUrl)),
                     Instances.ProjectElementContextOperations.Add_ExcelCOMReference,
                     Instances.ProjectElementContextOperations.Add_PackageReferences(
                         //new []
@@ -116,7 +116,7 @@ namespace R5T.L0033.Construction
 #pragma warning restore CS0618 // Type or member is obsolete
 
             // See the output.            
-            Instances.NotepadPlusPlusOperator.Open(outputFilePath);
+            Instances.NotepadPlusPlusOperator.Open(outputFilePath.Value);
         }
     }
 }
