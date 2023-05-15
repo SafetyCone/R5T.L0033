@@ -2,9 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using R5T.F0000;
 using R5T.L0032.T000;
 using R5T.T0131;
 using R5T.T0172;
+
+using R5T.L0033.T000;
+
 
 namespace R5T.L0033
 {
@@ -109,17 +113,33 @@ namespace R5T.L0033
                 context.ProjectElement,
                 true);
 
+        public Action<IProjectElementContext> Set_RepositoryUrl(IsSet<IRepositoryUrl> repositoryUrl)
+        {
+            return projectElementContext =>
+            {
+                if (repositoryUrl.WasSet)
+                {
+                    Instances.ProjectXmlOperator.Set_RepositoryUrl(
+                        projectElementContext.ProjectElement,
+                        repositoryUrl.Value);
+                }
+            };
+        }
+
         public Func<IRepositoryUrl, Action<IProjectElementContext>> Set_RepositoryUrl_Value =>
             repositoryUrl =>
                 context => Instances.ProjectXmlOperator.Set_RepositoryUrl(
                     context.ProjectElement,
                     repositoryUrl);
 
-        public Func<Func<IRepositoryUrl>, Action<IProjectElementContext>> Set_RepositoryUrl =>
-            repositoryUrlProvider =>
-                context => Instances.ProjectXmlOperator.Set_RepositoryUrl(
-                    context.ProjectElement,
-                    repositoryUrlProvider());
+        public Action<IProjectElementContext> Set_RepositoryUrl(Func<IRepositoryUrl> repositoryUrlProvider)
+        {
+            var repositoryUrl = repositoryUrlProvider();
+
+            return context => Instances.ProjectXmlOperator.Set_RepositoryUrl(
+                context.ProjectElement,
+                repositoryUrl);
+        }
 
         /// <inheritdoc cref="L0032.Z000.ICOMReferences.Microsoft_Office_Interop_Excel"/>
         public Action<IProjectElementContext> Add_ExcelCOMReference =>

@@ -10,10 +10,12 @@ namespace R5T.L0033
         public static L0032.Z000.ICOMReferences COMReferences => L0032.Z000.COMReferences.Instance;
         public static L0031.IContextOperator ContextOperator => L0031.ContextOperator.Instance;
         public static F0000.IEnumerableOperator EnumerableOperator => F0000.EnumerableOperator.Instance;
+        public static F0000.IFileSystemOperator FileSystemOperator => F0000.FileSystemOperator.Instance;
         public static L0032.Z000.IOutputTypes OutputTypes => L0032.Z000.OutputTypes.Instance;
         public static L0032.Z000.IPackageLicenseExpressions PackageLicenseExpressions => L0032.Z000.PackageLicenseExpressions.Instance;
         public static IProjectElementContextConstructors ProjectElementContextConstructors => L0033.ProjectElementContextConstructors.Instance;
         public static IProjectElementContextDestructors ProjectElementContextDestructors => L0033.ProjectElementContextDestructors.Instance;
+        public static IProjectElementContextOperations ProjectElementContextOperations => L0033.ProjectElementContextOperations.Instance;
         public static IProjectFileContextConstructors ProjectFileContextConstructors => L0033.ProjectFileContextConstructors.Instance;
         public static L0032.Z000.IProjectElementNames ProjectElementNames => L0032.Z000.ProjectElementNames.Instance;
         public static L0032.IProjectFileOperator ProjectFileOperator => L0032.ProjectFileOperator.Instance;

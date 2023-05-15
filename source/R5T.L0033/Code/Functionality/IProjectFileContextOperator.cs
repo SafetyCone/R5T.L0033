@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using R5T.T0132;
 using R5T.T0172;
 
+using R5T.L0033.T000;
+
 
 namespace R5T.L0033
 {
@@ -22,10 +24,16 @@ namespace R5T.L0033
                 Instances.ProjectElementContextDestructors.Save_Synchronous(projectFilePath));
         }
 
+        /// <summary>
+        /// Because this is the 'new' operation, it will throw an exception if the project file already exists.
+        /// </summary>
         public Task In_New_ProjectFileContext(
             IProjectFilePath projectFilePath,
             IEnumerable<Func<IProjectFileContext, Task>> operations = default)
         {
+            Instances.FileSystemOperator.VerifyFileDoesNotExists(
+                projectFilePath.Value);
+
             return Instances.ContextOperator.In_Context(
                 Instances.ProjectFileContextConstructors.New(projectFilePath),
                 operations,
@@ -52,6 +60,7 @@ namespace R5T.L0033
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc cref="In_New_ProjectFileContext(IProjectFilePath, IEnumerable{Func{IProjectFileContext, Task}})"/>
         public Task In_New_ProjectFileContext(
             IProjectFilePath projectFilePath,
             params Func<IProjectFileContext, Task>[] operations)

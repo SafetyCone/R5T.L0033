@@ -12,10 +12,13 @@ namespace R5T.L0033
         public static L0032.Z000.ITargetFrameworkMonikers Base => L0032.Z000.TargetFrameworkMonikers.Instance;
 
 
-        /// <inheritdoc cref="L0032.Z000.ITargetFrameworkMonikers.NET_6"/>
+        /// <summary>
+        /// The default target framework moniker for console projects.
+        /// (<inheritdoc cref="L0032.Z000.ITargetFrameworkMonikers.NET_6" path="/summary"/>)
+        /// </summary>
         public ITargetFrameworkMoniker Console => Base.NET_6;
 
-        /// <inheritdoc cref="L0032.Z000.ITargetFrameworkMonikers.NET_Standard2_1"/>
-        public ITargetFrameworkMoniker Library => Base.NET_Standard2_1;
+        /// <inheritdoc cref="L0032.Z000.ITargetFrameworkMonikers.NET_6"/>
+        public ITargetFrameworkMoniker Library => Base.NET_6;
     }
 }
