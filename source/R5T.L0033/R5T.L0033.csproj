@@ -19,5 +19,8 @@
     <ProjectReference Include="..\..\..\R5T.T0172\source\R5T.T0172\R5T.T0172.csproj" />
     <ProjectReference Include="..\R5T.L0033.T000\R5T.L0033.T000.csproj" />
     <ProjectReference Include="..\..\..\R5T.T0187\source\R5T.T0187\R5T.T0187.csproj" />
+    <ProjectReference Include="..\..\..\R5T.Z0048\source\R5T.Z0048\R5T.Z0048.csproj" />
+    <ProjectReference Include="..\..\..\R5T.Z0050\source\R5T.Z0050\R5T.Z0050.csproj" />
+    <ProjectReference Include="..\..\..\R5T.Z0051\source\R5T.Z0051\R5T.Z0051.csproj" />
   </ItemGroup>
 </Project>

@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 using R5T.F0000;
-using R5T.L0032.T000;
 using R5T.T0131;
 using R5T.T0172;
+using R5T.T0198;
+using R5T.T0202;
+using R5T.T0205;
 
 using R5T.L0033.T000;
 
@@ -33,17 +34,39 @@ namespace R5T.L0033
         public Action<IProjectElementContext> Add_CopyToOutputItemGroup =>
             context => Instances.ProjectXmlOperator.Add_CopyToOutputItemGroup(context.ProjectElement);
 
+        public Action<IProjectElementContext> Order_MainPropertyGroupNodes =>
+            context => Instances.ProjectXmlOperator.Order_MainPropertyGroupNodes(
+                context.ProjectElement);
+
+        /// <inheritdoc cref="IAuthors.DCoats"/>
+        public Action<IProjectElementContext> Set_Author_DCoats =>
+            context => Instances.ProjectXmlOperator.Set_Author(
+                context.ProjectElement,
+                Instances.Authors.DCoats);
+
         /// <inheritdoc cref="L0032.Z000.IProjectSdkNames.NET"/>
         public Action<IProjectElementContext> Set_SDK_Default =>
             context => Instances.ProjectXmlOperator.Set_Sdk(
                 context.ProjectElement,
                 Instances.ProjectSdkNames.NET);
 
+        /// <inheritdoc cref="L0032.Z000.IProjectSdkNames.Web"/>
+        public Action<IProjectElementContext> Set_SDK_Web =>
+            context => Instances.ProjectXmlOperator.Set_Sdk(
+                context.ProjectElement,
+                Instances.ProjectSdkNames.Web);
+
         /// <inheritdoc cref="ITargetFrameworkMonikers.Console"/>
         public Action<IProjectElementContext> Set_TargetFramework_Console =>
             context => Instances.ProjectXmlOperator.Set_TargetFramework(
                 context.ProjectElement,
                 Instances.TargetFrameworkMonikers.Console);
+
+        /// <inheritdoc cref="ITargetFrameworkMonikers.NET_6"/>
+        public Action<IProjectElementContext> Set_TargetFramework_NET_6 =>
+            context => Instances.ProjectXmlOperator.Set_TargetFramework(
+                context.ProjectElement,
+                Instances.TargetFrameworkMonikers.NET_6);
 
         /// <inheritdoc cref="ITargetFrameworkMonikers.Library"/>
         public Action<IProjectElementContext> Set_TargetFramework_Library =>
@@ -56,12 +79,6 @@ namespace R5T.L0033
             context => Instances.ProjectXmlOperator.Set_Version(
                 context.ProjectElement,
                 Instances.Versions.Default);
-
-        /// <inheritdoc cref="IAuthors.DCoats"/>
-        public Action<IProjectElementContext> Set_Author_DCoats =>
-            context => Instances.ProjectXmlOperator.Set_Author(
-                context.ProjectElement,
-                Instances.Authors.DCoats);
 
         /// <inheritdoc cref="ICompanyNames.Rivet"/>
         public Action<IProjectElementContext> Set_Company_Rivet =>
@@ -141,23 +158,16 @@ namespace R5T.L0033
                 repositoryUrl);
         }
 
-        /// <inheritdoc cref="L0032.Z000.ICOMReferences.Microsoft_Office_Interop_Excel"/>
+        /// <inheritdoc cref="Z0051.ICOMReferences.Microsoft_Office_Interop_Excel"/>
         public Action<IProjectElementContext> Add_ExcelCOMReference =>
             context => Instances.ProjectXmlOperator.Add_COMReference(
                 context.ProjectElement,
                 Instances.COMReferences.Microsoft_Office_Interop_Excel);
 
-        //public Delegates.Add_PackageReferences_Params Add_PackageReferences_Params =>
-        public delegate Action<IProjectElementContext> Add_PackageReferences_Params(params PackageReference[] packageReferences);
-        public Add_PackageReferences_Params Add_PackageReferences =>
-            packageReferences =>
-                context => Instances.ProjectXmlOperator.Add_PackageReferences(
-                    context.ProjectElement,
-                    packageReferences);
-        //public Action<IProjectElementContext> Add_PackageReferences(params PackageReference[] packageReferences) =>
-        //        context => Instances.ProjectXmlOperator.Add_PackageReferences(
-        //            context.ProjectElement,
-        //            packageReferences);
+        public Action<IProjectElementContext> Add_PackageReferences(params PackageReference[] packageReferences)
+            => context => Instances.ProjectXmlOperator.Add_PackageReferences(
+                context.ProjectElement,
+                packageReferences);
 
         public Func<IEnumerable<PackageReference>, Action<IProjectElementContext>> Add_PackageReferences_Enumerable =>
             packageReferences =>
@@ -165,32 +175,46 @@ namespace R5T.L0033
                     context.ProjectElement,
                     packageReferences);
 
-        public delegate Action<IProjectElementContext> Combine_Params(params Action<IProjectElementContext>[] operations);
-        public Combine_Params Combine =>
-            operations =>
-                context => operations.ForEach(x => x(context));
+        public Action<IProjectElementContext> Combine(params Action<IProjectElementContext>[] operations)
+            => Instances.ActionOperator.Combine(operations);
 
-        public delegate Action<IProjectElementContext> Add_ProjectReferenceRelativePaths_Params(params IProjectDirectoryRelativePath[] projectReferenceRelativePaths);
-        public Add_ProjectReferenceRelativePaths_Params Add_ProjectReferences =>
-            projectReferenceRelativePaths =>
-                context => Instances.ProjectXmlOperator.Add_ProjectReferences(
+        public Action<IProjectElementContext> Add_ProjectReferences(params IProjectDirectoryRelativePath[] projectReferenceRelativePaths)
+            => context => Instances.ProjectXmlOperator.Add_ProjectReferences(
                     context.ProjectElement,
                     projectReferenceRelativePaths);
 
-        public delegate Action<IProjectElementContext> Add_CopyToOutputs_Params(params IProjectDirectoryRelativePath[] fileRelativePaths);
-        public Add_CopyToOutputs_Params Add_CopyToOutputs =>
-            fileRelativePaths =>
-                context => Instances.ProjectXmlOperator.Add_CopyToOutputs(
+        public Action<IProjectElementContext> Add_ProjectReferences(
+            IProjectFilePath projectFilePath,
+            params IProjectFilePath[] projectReferenceFilePaths)
+            => context => Instances.ProjectXmlOperator.Add_ProjectReferences(
+                    context.ProjectElement,
+                    projectFilePath,
+                    projectReferenceFilePaths);
+
+        public Action<IProjectElementContext> Add_CopyToOutputs(params IProjectDirectoryRelativePath[] fileRelativePaths)
+            => context
+                => Instances.ProjectXmlOperator.Add_CopyToOutputs(
                     context.ProjectElement,
                     fileRelativePaths);
 
+        public Action<IProjectElementContext> Set_IgnoredWarnings(IEnumerable<IWarning> warnings)
+        {
+            return context =>
+                Instances.ProjectXmlOperator.Set_NoWarn(
+                    context.ProjectElement,
+                    warnings
+                );
+        }
 
-        //public Action<IProjectElementContext> Set_ =>
-        //  context => Instances.ProjectXmlOperator.Set_(
-        //      context.ProjectElement, 
-        //      Instances.);
+        public Action<IProjectElementContext> Set_IgnoredWarnings_Default
+            => this.Set_IgnoredWarnings(
+                Instances.WarningSets.DefaultIgnoredWarnings);
 
 
+        public Action<IProjectElementContext> Set_GenerateDocumentationFile
+            => context
+                => Instances.ProjectXmlOperator.Set_GenerateDocumentationFile(
+                    context.ProjectElement);
     }
 
 
