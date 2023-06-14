@@ -23,6 +23,31 @@ namespace R5T.L0033
         /// <summary>
         /// The project file for an ASP.NET server project for a Blazor client project.
         /// </summary>
+        public Func<IProjectFileContext, Task> Setup_BlazorClientProjectFile(
+            IProjectDescription projectDescription,
+            IsSet<IRepositoryUrl> repositoryUrl)
+        {
+            return projectFileContext =>
+            {
+                var operations = this.Setup_ProjectFileBaseOperations(
+                    projectDescription,
+                    repositoryUrl,
+                    Instances.ProjectElementContextOperations.Set_SDK_BlazorWebAssembly,
+                    Instances.ProjectElementContextOperations.Set_TargetFramework_NET_6,
+                    Instances.ProjectElementContextOperations.Add_PackageReferences(
+                        Instances.PackageReferences.Microsoft_AspNetCore_Components_WebAssembly,
+                        Instances.PackageReferences.Microsoft_AspNetCore_Components_WebAssembly_DevServer)
+                );
+
+                projectFileContext.Run(operations);
+
+                return Task.CompletedTask;
+            };
+        }
+
+        /// <summary>
+        /// The project file for an ASP.NET server project for a Blazor client project.
+        /// </summary>
         public Func<IProjectFileContext, Task> Setup_WebServerForBlazorClientProjectFile(
             IProjectDescription projectDescription,
             IsSet<IRepositoryUrl> repositoryUrl,

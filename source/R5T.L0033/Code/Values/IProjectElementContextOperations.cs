@@ -56,6 +56,12 @@ namespace R5T.L0033
                 context.ProjectElement,
                 Instances.ProjectSdkNames.Web);
 
+        /// <inheritdoc cref="L0032.Z000.IProjectSdkNames.BlazorWebAssembly"/>
+        public Action<IProjectElementContext> Set_SDK_BlazorWebAssembly =>
+            context => Instances.ProjectXmlOperator.Set_Sdk(
+                context.ProjectElement,
+                Instances.ProjectSdkNames.BlazorWebAssembly);
+
         /// <inheritdoc cref="ITargetFrameworkMonikers.Console"/>
         public Action<IProjectElementContext> Set_TargetFramework_Console =>
             context => Instances.ProjectXmlOperator.Set_TargetFramework(
