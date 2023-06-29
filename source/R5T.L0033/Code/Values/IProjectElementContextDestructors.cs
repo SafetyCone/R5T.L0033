@@ -12,7 +12,7 @@ namespace R5T.L0033
     [ValuesMarker]
     public partial interface IProjectElementContextDestructors : IValuesMarker
     {
-        private Internal.IProjectElementContextDestructors Internal => L0033.Internal.ProjectElementContextDestructors.Instance;
+        private static Internal.IProjectElementContextDestructors Internal => L0033.Internal.ProjectElementContextDestructors.Instance;
 
 
         public Func<IProjectFilePath, Action<IProjectElementContext>> Save_Synchronous =>

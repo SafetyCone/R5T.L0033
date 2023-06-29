@@ -20,6 +20,28 @@ namespace R5T.L0033
     [ValuesMarker]
     public partial interface IProjectFileContextOperations : IValuesMarker
     {
+        public Func<IProjectFileContext, Task> Setup_RazorClassLibraryProjectFile(
+            IProjectDescription projectDescription,
+            IsSet<IRepositoryUrl> repositoryUrl)
+        {
+            return projectFileContext =>
+            {
+                var operations = this.Setup_ProjectFileBaseOperations(
+                    projectDescription,
+                    repositoryUrl,
+                    Instances.ProjectElementContextOperations.Set_SDK_Razor,
+                    Instances.ProjectElementContextOperations.Set_TargetFramework_NET_6,
+                    Instances.ProjectElementContextOperations.Set_SupportedPlatform_Browser,
+                    Instances.ProjectElementContextOperations.Add_PackageReferences(
+                        Instances.PackageReferences.Microsoft_AspNetCore_Components_Web)
+                );
+
+                projectFileContext.Run(operations);
+
+                return Task.CompletedTask;
+            };
+        }
+
         /// <summary>
         /// The project file for an ASP.NET server project for a Blazor client project.
         /// </summary>
@@ -121,6 +143,15 @@ namespace R5T.L0033
                 Instances.ProjectElementContextOperations.Set_RepositoryUrl(
                     repositoryUrl)
             );
+        }
+
+        public IEnumerable<Action<IProjectFileContext>> Setup_ProjectFile_WithLibraryBaseOperations()
+        {
+            return Instances.EnumerableOperator.From(
+                Instances.ProjectElementContextOperations.Set_TargetFramework_Library,
+                Instances.ProjectElementContextOperations.Set_SDK_Default,
+                Instances.ProjectElementContextOperations.Set_IgnoredWarnings_Default,
+                Instances.ProjectElementContextOperations.Set_GenerateDocumentationFile);
         }
 
         public IEnumerable<Action<IProjectFileContext>> Setup_ProjectFileBaseOperations(

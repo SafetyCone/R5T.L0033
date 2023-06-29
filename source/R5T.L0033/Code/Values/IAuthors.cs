@@ -1,18 +1,13 @@
 using System;
 
 using R5T.T0131;
-using R5T.L0032.T000;
-using R5T.L0032.T000.Extensions;
 
 
 namespace R5T.L0033
 {
     [ValuesMarker]
-    public partial interface IAuthors : IValuesMarker
+    public partial interface IAuthors : IValuesMarker,
+        Z002.IAuthors
     {
-        /// <summary>
-        /// <see href="https://www.nuget.org/profiles/DCoats">DCoats</see>.
-        /// </summary>
-        public INugetUserName DCoats => "DCoats".ToNugetUserName();
     }
 }

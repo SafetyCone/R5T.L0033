@@ -19,10 +19,12 @@ namespace R5T.L0033
         public static IProjectElementContextDestructors ProjectElementContextDestructors => L0033.ProjectElementContextDestructors.Instance;
         public static IProjectElementContextOperations ProjectElementContextOperations => L0033.ProjectElementContextOperations.Instance;
         public static IProjectFileContextConstructors ProjectFileContextConstructors => L0033.ProjectFileContextConstructors.Instance;
+        public static L0032.IProjectElementOperator ProjectElementOperator => L0032.ProjectElementOperator.Instance;
         public static L0032.Z000.IProjectElementNames ProjectElementNames => L0032.Z000.ProjectElementNames.Instance;
         public static L0032.IProjectFileOperator ProjectFileOperator => L0032.ProjectFileOperator.Instance;
         public static L0032.Z000.IProjectSdkNames ProjectSdkNames => L0032.Z000.ProjectSdkNames.Instance;
         public static L0032.IProjectXmlOperator ProjectXmlOperator => L0032.ProjectXmlOperator.Instance;
+        public static L0032.Z000.ISupportedPlatforms SupportedPlatforms => L0032.Z000.SupportedPlatforms.Instance;
         public static ITargetFrameworkMonikers TargetFrameworkMonikers => L0033.TargetFrameworkMonikers.Instance;
         public static F0000.IVersions Versions => F0000.Versions.Instance;
         public static Z0048.IWarnings Warnings => Z0048.Warnings.Instance;

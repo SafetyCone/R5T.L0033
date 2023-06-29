@@ -20,7 +20,7 @@ namespace R5T.L0033
             context => Instances.ProjectXmlOperator.Add_MainPropertyGroup(context.ProjectElement);
 
         public Action<IProjectElementContext> Add_PackagePropertyGroup =>
-            context => Instances.ProjectXmlOperator.Add_PackagePropertyGroup(context.ProjectElement);
+            context => Instances.ProjectElementOperator.Add_PackagePropertyGroup(context.ProjectElement);
 
         public Action<IProjectElementContext> Add_COMReferencesItemGroup =>
             context => Instances.ProjectXmlOperator.Add_COMReferencesItemGroup(context.ProjectElement);
@@ -35,12 +35,12 @@ namespace R5T.L0033
             context => Instances.ProjectXmlOperator.Add_CopyToOutputItemGroup(context.ProjectElement);
 
         public Action<IProjectElementContext> Order_MainPropertyGroupNodes =>
-            context => Instances.ProjectXmlOperator.Order_MainPropertyGroupNodes(
+            context => Instances.ProjectElementOperator.Order_MainPropertyGroupNodes(
                 context.ProjectElement);
 
-        /// <inheritdoc cref="IAuthors.DCoats"/>
+        /// <inheritdoc cref="Z002.IAuthors.DCoats"/>
         public Action<IProjectElementContext> Set_Author_DCoats =>
-            context => Instances.ProjectXmlOperator.Set_Author(
+            context => Instances.ProjectElementOperator.Set_Author(
                 context.ProjectElement,
                 Instances.Authors.DCoats);
 
@@ -62,69 +62,81 @@ namespace R5T.L0033
                 context.ProjectElement,
                 Instances.ProjectSdkNames.BlazorWebAssembly);
 
-        /// <inheritdoc cref="ITargetFrameworkMonikers.Console"/>
+        /// <inheritdoc cref="L0032.Z000.IProjectSdkNames.Razor"/>
+        public Action<IProjectElementContext> Set_SDK_Razor =>
+            context => Instances.ProjectXmlOperator.Set_Sdk(
+                context.ProjectElement,
+                Instances.ProjectSdkNames.Razor);
+
+        /// <inheritdoc cref="L0032.Z000.ISupportedPlatforms.Browser"/>
+        public Action<IProjectElementContext> Set_SupportedPlatform_Browser =>
+            context => Instances.ProjectElementOperator.Set_SupportedPlatform(
+                context.ProjectElement,
+                Instances.SupportedPlatforms.Browser);
+
+        /// <inheritdoc cref="Z001.ITargetFrameworkMonikers.Console"/>
         public Action<IProjectElementContext> Set_TargetFramework_Console =>
-            context => Instances.ProjectXmlOperator.Set_TargetFramework(
+            context => Instances.ProjectElementOperator.Set_TargetFramework(
                 context.ProjectElement,
                 Instances.TargetFrameworkMonikers.Console);
 
-        /// <inheritdoc cref="ITargetFrameworkMonikers.NET_6"/>
+        /// <inheritdoc cref="Z001.ITargetFrameworkMonikers.NET_6"/>
         public Action<IProjectElementContext> Set_TargetFramework_NET_6 =>
-            context => Instances.ProjectXmlOperator.Set_TargetFramework(
+            context => Instances.ProjectElementOperator.Set_TargetFramework(
                 context.ProjectElement,
                 Instances.TargetFrameworkMonikers.NET_6);
 
-        /// <inheritdoc cref="ITargetFrameworkMonikers.Library"/>
+        /// <inheritdoc cref="Z001.ITargetFrameworkMonikers.Library"/>
         public Action<IProjectElementContext> Set_TargetFramework_Library =>
-            context => Instances.ProjectXmlOperator.Set_TargetFramework(
+            context => Instances.ProjectElementOperator.Set_TargetFramework(
                 context.ProjectElement,
                 Instances.TargetFrameworkMonikers.Library);
 
-        /// <inheritdoc cref="F0000.IVersions.Default"/>
+        /// <inheritdoc cref="IVersions.Default"/>
         public Action<IProjectElementContext> Set_Version_Default =>
-            context => Instances.ProjectXmlOperator.Set_Version(
+            context => Instances.ProjectElementOperator.Set_Version(
                 context.ProjectElement,
                 Instances.Versions.Default);
 
-        /// <inheritdoc cref="ICompanyNames.Rivet"/>
+        /// <inheritdoc cref="Z002.ICompanyNames.Rivet"/>
         public Action<IProjectElementContext> Set_Company_Rivet =>
-            context => Instances.ProjectXmlOperator.Set_Company(
+            context => Instances.ProjectElementOperator.Set_Company(
                 context.ProjectElement,
                 Instances.CompanyNames.Rivet);
 
-        /// <inheritdoc cref="ICompanyNames.Rivet"/>
+        /// <inheritdoc cref="Z002.ICompanyNames.Rivet"/>
         public Action<IProjectElementContext> Set_Copyright_Rivet =>
-            context => Instances.ProjectXmlOperator.Set_Copyright_FromCopyrightHolder(
+            context => Instances.ProjectElementOperator.Set_Copyright_FromCopyrightHolder(
                 context.ProjectElement,
                 Instances.CompanyNames.Rivet.Value);
 
         public Func<string, Action<IProjectElementContext>> Set_Description =>
             description =>
-                context => Instances.ProjectXmlOperator.Set_Description(
+                context => Instances.ProjectElementOperator.Set_Description(
                     context.ProjectElement,
                     description);
 
         /// <inheritdoc cref="L0032.Z000.IOutputTypes.Exe"/>
         public Action<IProjectElementContext> Set_OutputType_Exe =>
-            context => Instances.ProjectXmlOperator.Set_OutputType(
+            context => Instances.ProjectElementOperator.Set_OutputType(
                 context.ProjectElement,
                 Instances.OutputTypes.Exe);
 
         /// <inheritdoc cref="L0032.Z000.IOutputTypes.Library"/>
         public Action<IProjectElementContext> Set_OutputType_Library =>
-            context => Instances.ProjectXmlOperator.Set_OutputType(
+            context => Instances.ProjectElementOperator.Set_OutputType(
                 context.ProjectElement,
                 Instances.OutputTypes.Library);
 
         /// <inheritdoc cref="L0032.Z000.IOutputTypes.WinExe"/>
         public Action<IProjectElementContext> Set_OutputType_WinExe =>
-            context => Instances.ProjectXmlOperator.Set_OutputType(
+            context => Instances.ProjectElementOperator.Set_OutputType(
                 context.ProjectElement,
                 Instances.OutputTypes.WinExe);
 
         /// <inheritdoc cref="L0032.Z000.IPackageLicenseExpressions.MIT"/>
         public Action<IProjectElementContext> Set_PackageLicenseExpression_MIT =>
-            context => Instances.ProjectXmlOperator.Set_PackageLicenseExpression(
+            context => Instances.ProjectElementOperator.Set_PackageLicenseExpression(
                 context.ProjectElement,
                 Instances.PackageLicenseExpressions.MIT);
 
@@ -132,7 +144,7 @@ namespace R5T.L0033
         /// Require license acceptance to use the package.
         /// </summary>
         public Action<IProjectElementContext> Set_PackageRequireLicenseAcceptance =>
-            context => Instances.ProjectXmlOperator.Set_PackageRequireLicenseAcceptance(
+            context => Instances.ProjectElementOperator.Set_PackageRequireLicenseAcceptance(
                 context.ProjectElement,
                 true);
 
@@ -142,7 +154,7 @@ namespace R5T.L0033
             {
                 if (repositoryUrl.WasSet)
                 {
-                    Instances.ProjectXmlOperator.Set_RepositoryUrl(
+                    Instances.ProjectElementOperator.Set_RepositoryUrl(
                         projectElementContext.ProjectElement,
                         repositoryUrl.Value);
                 }
@@ -151,7 +163,7 @@ namespace R5T.L0033
 
         public Func<IRepositoryUrl, Action<IProjectElementContext>> Set_RepositoryUrl_Value =>
             repositoryUrl =>
-                context => Instances.ProjectXmlOperator.Set_RepositoryUrl(
+                context => Instances.ProjectElementOperator.Set_RepositoryUrl(
                     context.ProjectElement,
                     repositoryUrl);
 
@@ -159,7 +171,7 @@ namespace R5T.L0033
         {
             var repositoryUrl = repositoryUrlProvider();
 
-            return context => Instances.ProjectXmlOperator.Set_RepositoryUrl(
+            return context => Instances.ProjectElementOperator.Set_RepositoryUrl(
                 context.ProjectElement,
                 repositoryUrl);
         }
@@ -206,7 +218,7 @@ namespace R5T.L0033
         public Action<IProjectElementContext> Set_IgnoredWarnings(IEnumerable<IWarning> warnings)
         {
             return context =>
-                Instances.ProjectXmlOperator.Set_NoWarn(
+                Instances.ProjectElementOperator.Set_NoWarn(
                     context.ProjectElement,
                     warnings
                 );
@@ -216,16 +228,9 @@ namespace R5T.L0033
             => this.Set_IgnoredWarnings(
                 Instances.WarningSets.DefaultIgnoredWarnings);
 
-
         public Action<IProjectElementContext> Set_GenerateDocumentationFile
             => context
-                => Instances.ProjectXmlOperator.Set_GenerateDocumentationFile(
+                => Instances.ProjectElementOperator.Set_GenerateDocumentationFile(
                     context.ProjectElement);
     }
-
-
-    //namespace Delegates
-    //{
-    //    public delegate Action<IProjectElementContext> Add_PackageReferences_Params(params PackageReference[] packageReferences);
-    //}
 }
