@@ -1,9 +1,9 @@
 using System;
 
-using R5T.L0032.T000.Extensions;
 using R5T.T0141;
 using R5T.T0172.Extensions;
 using R5T.T0181.Extensions;
+using R5T.T0198.Extensions;
 
 
 namespace R5T.L0033.Construction
@@ -105,7 +105,7 @@ namespace R5T.L0033.Construction
                 Instances.ProjectFilePaths.Example01);
 
             // Select the root project element.
-            var projectElement = Instances.ProjectFileXmlOperator.Get_ProjectElement(projectDocument);
+            var projectElement = Instances.ProjectDocumentOperator.Get_ProjectElement(projectDocument);
 
             // Save the project element.
             // Use this XML-level operator since for this experiment we are working at the XML level.

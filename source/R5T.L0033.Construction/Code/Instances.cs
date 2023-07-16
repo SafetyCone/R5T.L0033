@@ -9,11 +9,13 @@ namespace R5T.L0033.Construction
         public static F0120.IExecutableFileRelativePathOperator ExecutableFileRelativePathOperator => F0120.ExecutableFileRelativePathOperator.Instance;
         public static Z0015.IFilePaths FilePaths => Z0015.FilePaths.Instance;
         public static F0033.INotepadPlusPlusOperator NotepadPlusPlusOperator => F0033.NotepadPlusPlusOperator.Instance;
-        public static L0032.Z000.IPackageReferences PackageReferences => L0032.Z000.PackageReferences.Instance;
+        public static Z0050.IPackageReferences PackageReferences => Z0050.PackageReferences.Instance;
         public static F0002.IPathOperator PathOperator => F0002.PathOperator.Instance;
+        public static L0032.F000.IProjectDocumentOperator ProjectDocumentOperator => L0032.F000.ProjectDocumentOperator.Instance;
         public static IProjectElementContextOperations ProjectElementContextOperations => L0033.ProjectElementContextOperations.Instance;
         public static IProjectElementContextOperationSequences ProjectElementContextOperationSequences => L0033.ProjectElementContextOperationSequences.Instance;
         public static IProjectElementContextOperator ProjectElementContextOperator => L0033.ProjectElementContextOperator.Instance;
+        public static L0032.F000.IProjectElementOperator ProjectElementOperator => L0032.F000.ProjectElementOperator.Instance;
         public static IProjectFileContextOperator ProjectFileContextOperator => L0033.ProjectFileContextOperator.Instance;
         public static IProjectFileContextOperations ProjectFileContextOperations => L0033.ProjectFileContextOperations.Instance;
         public static IProjectFilePaths ProjectFilePaths => Construction.ProjectFilePaths.Instance;
