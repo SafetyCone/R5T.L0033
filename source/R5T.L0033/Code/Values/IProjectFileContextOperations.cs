@@ -73,10 +73,12 @@ namespace R5T.L0033
         public Func<IProjectFileContext, Task> Setup_WebServerForBlazorClientProjectFile(
             IProjectDescription projectDescription,
             IsSet<IRepositoryUrl> repositoryUrl,
-            IProjectFilePath clientProjectFilePath)
+            Func<IProjectFilePath> clientProjectFilePathProvider)
         {
             return projectFileContext =>
             {
+                var clientProjectFilePath = clientProjectFilePathProvider();
+
                 var operations = this.Setup_ProjectFileBaseOperations(
                     projectDescription,
                     repositoryUrl,
