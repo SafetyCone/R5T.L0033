@@ -92,19 +92,19 @@ namespace R5T.L0033
                 context.ProjectElement,
                 Instances.TargetFrameworkMonikers.Library);
 
-        /// <inheritdoc cref="IVersions.Default"/>
+        /// <inheritdoc cref="L0066.IVersions.Default"/>
         public Action<IProjectElementContext> Set_Version_Default =>
             context => Instances.ProjectElementOperator.Set_Version(
                 context.ProjectElement,
                 Instances.Versions.Default);
 
-        /// <inheritdoc cref="Z002.ICompanyNames.Rivet"/>
+        /// <inheritdoc cref="L0032.Z002.ICompanyNames.Rivet"/>
         public Action<IProjectElementContext> Set_Company_Rivet =>
             context => Instances.ProjectElementOperator.Set_Company(
                 context.ProjectElement,
                 Instances.CompanyNames.Rivet);
 
-        /// <inheritdoc cref="Z002.ICompanyNames.Rivet"/>
+        /// <inheritdoc cref="L0032.Z002.ICompanyNames.Rivet"/>
         public Action<IProjectElementContext> Set_Copyright_Rivet =>
             context => Instances.ProjectElementOperator.Set_Copyright_FromCopyrightHolder(
                 context.ProjectElement,

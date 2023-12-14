@@ -7,7 +7,7 @@ namespace R5T.L0033
     {
         public static F0000.IActionOperator ActionOperator => F0000.ActionOperator.Instance;
         public static IAuthors Authors => L0033.Authors.Instance;
-        public static ICompanyNames CompanyNames => L0033.CompanyNames.Instance;
+        public static L0032.Z002.ICompanyNames CompanyNames => L0032.Z002.CompanyNames.Instance;
         public static Z0051.ICOMReferences COMReferences => Z0051.COMReferences.Instance;
         public static L0031.IContextOperator ContextOperator => L0031.ContextOperator.Instance;
         public static F0000.IEnumerableOperator EnumerableOperator => F0000.EnumerableOperator.Instance;
