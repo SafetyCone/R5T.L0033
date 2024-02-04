@@ -33,7 +33,7 @@ namespace R5T.L0033
             IProjectFilePath projectFilePath,
             IEnumerable<Func<IProjectFileContext, Task>> operations = default)
         {
-            Instances.FileSystemOperator.VerifyFileDoesNotExists(
+            Instances.FileSystemOperator.Verify_File_DoesNotExist(
                 projectFilePath.Value);
 
             return Instances.ContextOperator.In_Context(
@@ -49,7 +49,7 @@ namespace R5T.L0033
             ITextOutput textOutput,
             IEnumerable<Func<IProjectFileContext, Task>> operations = default)
         {
-            Instances.FileSystemOperator.VerifyFileDoesNotExists(
+            Instances.FileSystemOperator.Verify_File_DoesNotExist(
                 projectFilePath.Value);
 
             return Instances.ContextOperator.In_Context(
@@ -80,7 +80,7 @@ namespace R5T.L0033
             IProjectFileContext projectFileContext,
             IEnumerable<Func<IProjectFileContext, Task>> operations = default)
         {
-            Instances.FileSystemOperator.VerifyFileDoesNotExists(
+            Instances.FileSystemOperator.Verify_File_DoesNotExist(
                 projectFileContext.ProjectFilePath.Value);
 
             return Instances.ContextOperator.In_Context(
@@ -104,7 +104,7 @@ namespace R5T.L0033
             IProjectFileContext projectFileContext,
             IEnumerable<Action<IProjectFileContext>> operations = default)
         {
-            Instances.FileSystemOperator.VerifyFileDoesNotExists(
+            Instances.FileSystemOperator.Verify_File_DoesNotExist(
                 projectFileContext.ProjectFilePath.Value);
 
             Instances.ContextOperator.In_Context(
