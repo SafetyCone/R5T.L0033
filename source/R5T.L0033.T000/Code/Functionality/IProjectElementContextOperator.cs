@@ -19,7 +19,7 @@ namespace R5T.L0033.T000
         public IEnumerable<Action<N001.IProjectElementContext>> Combine_Actions(
             params Action<N001.IProjectElementContext>[] projectElementContextActions)
         {
-            var output = Instances.EnumerableOperator.From(projectElementContextActions);
+            var output = projectElementContextActions.AsEnumerable();
             return output;
         }
 
