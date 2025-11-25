@@ -92,7 +92,7 @@ namespace R5T.L0033
                 context.ProjectElement,
                 Instances.TargetFrameworkMonikers.Library);
 
-        /// <inheritdoc cref="L0066.IVersions.Default"/>
+        /// <inheritdoc cref="F10Y.L0000.IVersions.Default"/>
         public Action<IProjectElementContext> Set_Version_Default =>
             context => Instances.ProjectElementOperator.Set_Version(
                 context.ProjectElement,
